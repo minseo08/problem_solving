@@ -1,8 +1,8 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 #include <string>
 #include <map>
-#include <cctype>
 using namespace std;
 map<string, int> mp;
 vector<string> vec;
