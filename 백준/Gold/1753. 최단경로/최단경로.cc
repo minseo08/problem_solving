@@ -1,50 +1,49 @@
 #include <iostream>
-#include <queue>
 #include <vector>
-#include <cstring>
+#include <queue>
+#include <algorithm>
 #define INF 987654321
 using namespace std;
-int v, e, k;
+vector<pair<int, int>> graph[20001];
 int dp[20001];
-vector<pair<int, int>> vec[20001];
 
 void dijk(int tmp){
-    for(int i = 1; i <= v; i++){
-        dp[i] = INF;
-    }
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.push({0, tmp});
     dp[tmp] = 0;
     while(!pq.empty()){
-        int x = pq.top().second;
-        int cost = pq.top().first;
+        int tx = pq.top().second;
+        int td = pq.top().first;
         pq.pop();
-        for(int i = 0; i < vec[x].size(); i++){
-            int nx = vec[x][i].first;
-            int ncost = cost + vec[x][i].second;
-            if(dp[nx] > ncost){
-                pq.push({ncost, nx});
-                dp[nx] = ncost;
+        for(int i = 0; i < graph[tx].size(); i++){
+            int nx = graph[tx][i].first;
+            int nd = graph[tx][i].second;
+            if(dp[nx] > td + nd){
+                dp[nx] = td + nd;
+                pq.push({td + nd, nx});
             }
         }
     }
 }
 
 int main(){
-    cin >> v >> e >> k;
-    int a, b, c;
+    int v, e, s;
+    cin >> v >> e;
+    cin >> s;
     for(int i = 0; i < e; i++){
+        int a, b, c;
         cin >> a >> b >> c;
-        vec[a].push_back({b, c});
+        graph[a].push_back({b, c});
     }
-    dijk(k);
     for(int i = 1; i <= v; i++){
-        if(dp[i] < INF){
+        dp[i] = INF;
+    }
+    dijk(s);
+    for(int i = 1; i <= v; i++){
+        if(dp[i] < INF)
             cout << dp[i] << "\n";
-        }
-        else{
+        else
             cout << "INF" << "\n";
-        }
     }
     return 0;
 }
