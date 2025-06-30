@@ -10,7 +10,7 @@ int main(){
     int c, n;
     cin >> c >> n;
     for(int i = 1; i <= n; i++){
-        cin >> arr[i].first >> arr[i].second; // 비용, 고객
+        cin >> arr[i].first >> arr[i].second; // 비용,고객
     }
     for(int i = 0; i < 21; i++){
         for(int j = 1; j < MAX; j++)
