@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string.h>
 #include <algorithm>
 #define MAX 1100
 #define INF 987654321
@@ -14,8 +13,6 @@ int main(){
     }
     int c, n;
     cin >> c >> n;
-    arr[0].first = 0;
-    arr[0].second = 0;
     for(int i = 1; i <= n; i++){
         cin >> arr[i].first >> arr[i].second;
     }
