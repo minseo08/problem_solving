@@ -17,13 +17,11 @@ int solution(int n, vector<vector<int>> costs) {
     pq.push({0, 0});
     while(!pq.empty()){
         pair<int, int> tmp = pq.top();
-        cout << tmp.first << " " << tmp.second << "\n";
         if(visited[tmp.second]){
             pq.pop();
             continue;
         }
         visited[tmp.second] = true;
-        cout << "visited!" << tmp.second << "\n";
         pq.pop();
         cnt++;
         answer += tmp.first;
@@ -31,8 +29,6 @@ int solution(int n, vector<vector<int>> costs) {
             break;
         for(int i = 0; i < graph[tmp.second].size(); i++){
             if(!visited[graph[tmp.second][i].second]){
-                visited[tmp.second] = true;
-                cout << "push:" << graph[tmp.second][i].first << " " << graph[tmp.second][i].second << "\n";
                 pq.push(graph[tmp.second][i]);
             }
         }
