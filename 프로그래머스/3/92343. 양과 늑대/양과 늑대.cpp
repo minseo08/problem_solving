@@ -1,10 +1,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <queue>
 using namespace std;
 vector<int> graph[18];
-bool visited[18];
 int answer = 0;
 
 void dfs(int curr, int sheep_cnt, int wolf_cnt, vector<int> &info, vector<int> nodes){
@@ -14,6 +12,7 @@ void dfs(int curr, int sheep_cnt, int wolf_cnt, vector<int> &info, vector<int> n
         wolf_cnt++;
     if(sheep_cnt <= wolf_cnt)
         return;
+    
     answer = max(sheep_cnt, answer);
     for(int i = 0; i < nodes.size(); i++){
         int tmp = nodes[i];
@@ -21,7 +20,6 @@ void dfs(int curr, int sheep_cnt, int wolf_cnt, vector<int> &info, vector<int> n
         curr_nodes.erase(curr_nodes.begin() + i);
         for(int j = 0; j < graph[tmp].size(); j++)
             curr_nodes.push_back(graph[tmp][j]);
-        //조건 확인
         dfs(tmp, sheep_cnt, wolf_cnt, info, curr_nodes);
     }
 }
